@@ -238,10 +238,10 @@ Workload A in Trust Domain I performs a token exchange with the TTS in Trust Dom
 
 The parameters for the Txn-Token request follow the definitions in section 12.1 of {{?I-D.ietf-oauth-transaction-tokens}}, the following requirements apply to the subject_token and subject_token_type:
 
-**subject_token**
+**subject_token**<br>
 &nbsp;&nbsp;&nbsp;&nbsp;**REQUIRED.** MUST be the access token issued by the AS in Trust Domain II, as obtained in Section 4.2.
 
-**subject_token_type**
+**subject_token_type**<br>
 &nbsp;&nbsp;&nbsp;&nbsp;**REQUIRED.** MUST be urn:ietf:params:oauth:token-type:access_token.
 
 #### Txn-Token Response
@@ -261,10 +261,10 @@ Workload A in Trust Domain I performs token exchange with the AS in Trust Domain
 #### Txn-JAG Request
 The request follows the same format as defined in Section 4.1.1.1, except for the resource or audience claim:
 
-**resource**
+**resource**<br>
 &nbsp;&nbsp;&nbsp;&nbsp;**REQUIRED.** if audience is not set. It MUST be the URI of the TTS in Trust Domain II.
 
-**audience**
+**audience**<br>
 &nbsp;&nbsp;&nbsp;&nbsp;**REQUIRED.** if resource is not set. It MUST be the well-known/logical name of the TTS in Trust Domain II.
 
 
@@ -283,10 +283,10 @@ Endpoint B performs a token exchange with the TTS in Trust Domain II to obtain a
 #### Txn-Token Request
 The parameters for the Txn-Token request follow the definitions in section 12.1 of {{?I-D.ietf-oauth-transaction-tokens}}. The following requirements apply:
 
-**subject_token**
+**subject_token**<br>
 &nbsp;&nbsp;&nbsp;&nbsp;**REQUIRED.** MUST be the Txn-JAG issued by the AS in Trust Domain I, as obtained in Section 4.2.1 and presented to Endpoint B via the method in Section 4.2.1.3.
 
-**subject_token_type**
+**subject_token_type**<br>
 &nbsp;&nbsp;&nbsp;&nbsp;**REQUIRED.**  MUST be urn:ietf:params:oauth:token-type:jwt-bearer.
 
 #### Txn-Token Response
