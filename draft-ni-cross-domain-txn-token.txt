@@ -96,7 +96,7 @@ Table of Contents
 
 1.  Introduction
 
-   Due to the rise of collaboration service ecosystems and AI Agents,
+   Due to the rise of collaboration service ecosystems and AI agents,
    service interactions frequently cross domain boundaries and involve
    multiple service operators (e.g., enterprises, cloud providers, SaaS
    platforms, etc.).  As illustrated in
@@ -141,10 +141,10 @@ Table of Contents
    "Authorization Server" (AS) defined by [RFC6749].  Moreover, the
    following terms are extended or defined in this document.
 
-   *  Intra-domain Transaction Token (Txn-Token).  A short-lived, signed
-      JWT that provides immutable information about the user, workloads,
-      and specific contextual attributes of the call within a trust
-      domain, as defined in [I-D.ietf-oauth-transaction-tokens].
+   *  Intra-domain Transaction Token.  A short-lived, signed JWT that
+      provides immutable information about the user, workloads, and
+      specific contextual attributes of the call within a trust domain,
+      as defined in [I-D.ietf-oauth-transaction-tokens].
 
    *  Cross-domain Transaction Token.  A Txn-Token that preserves and
       propagates workflow-related claims from an upstream trust domain
