@@ -209,9 +209,9 @@ The parameters for the Txn-JAG request build upon the definitions in Section 2.3
 
 
 #### Txn-JAG Response
-The processing rules and response format defined in sections 2.3.2 and 2.3.3 of {{?I-D.ietf-oauth-identity-chaining}} apply, with the following modifications:
+The processing rules and response format defined in Sections 2.3.2 and 2.3.3 of {{?I-D.ietf-oauth-identity-chaining}} apply, with the following modifications:
 
-* The AS in trust domain I SHOULD transcribe the workflow-related claims from the Txn-Token to the Txn-JAG's claims. During this transcription, The AS in trust domain I MAY add, remove or change the claims. See Claims Transcription (Section 4.4).
+* The AS in trust domain I SHOULD transcribe the workflow-related claims from the Txn-Token to the Txn-JAG's claims. During this transcription, The AS in trust domain I MAY add, remove or change the claims. See Claims Transcription (Section 4.3).
 
 ### Cross-Domain Assertion
 
@@ -219,7 +219,7 @@ Workload A in Trust Domain I uses the Txn-JAG obtained from the AS in Trust Doma
 
 #### Access Token Request
 
-The parameters described in section 2.4.1 of {{?I-D.ietf-oauth-identity-chaining}} apply here with the following restrictions:
+The parameters described in Section 2.4.1 of {{?I-D.ietf-oauth-identity-chaining}} apply here with the following restrictions:
 
 **assertion**<br>
 &nbsp;&nbsp;&nbsp;&nbsp;**REQUIRED.** The Txn-JAG returned by the AS in Trust Domain I.
@@ -227,7 +227,7 @@ The parameters described in section 2.4.1 of {{?I-D.ietf-oauth-identity-chaining
 #### Access Token Response
 The processing rules and response formats defined in Sections 2.4.2 and 2.4.3 of {{?I-D.ietf-oauth-identity-chaining}} apply, with the following modifications:
 
-* The AS in trust domain II SHOULD transcribe the workflow-related claims from the Txn-JAG to the access token's claims. See Claims Transcription (Section 4.4).
+* The AS in trust domain II SHOULD transcribe the workflow-related claims from the Txn-JAG to the access token's claims. See Claims Transcription (Section 4.3).
 
 
 ### Token Exchange for Txn-Token
@@ -236,7 +236,7 @@ Workload A in Trust Domain I performs a token exchange with the TTS in Trust Dom
 
 #### Txn-Token Request
 
-The parameters for the Txn-Token request follow the definitions in section 12.1 of {{?I-D.ietf-oauth-transaction-tokens}}, the following requirements apply to the subject_token and subject_token_type:
+The parameters for the Txn-Token request follow the definitions in Section 12.1 of {{?I-D.ietf-oauth-transaction-tokens}}, the following requirements apply to the subject_token and subject_token_type:
 
 **subject_token**<br>
 &nbsp;&nbsp;&nbsp;&nbsp;**REQUIRED.** MUST be the access token issued by the AS in Trust Domain II, as obtained in Section 4.2.
@@ -249,7 +249,7 @@ The processing rules and response formats defined in Sections 12.3 and 12.4 of {
 
 * For subject token validation, the TTS in Trust Domain II MUST validate the access token issued by its local AS.
 
-* The TTS in trust domain II SHOULD transcribe the workflow-related claims from the subject token to the claims of issued Txn Token.  See Claims Transcription (section 4.4).
+* The TTS in trust domain II SHOULD transcribe the workflow-related claims from the subject token to the claims of issued Txn Token.  See Claims Transcription (Section 4.3).
 
 ## Mode B: Direct Txn-Token Exchange
 
@@ -281,7 +281,7 @@ When a Txn-JAG is presented directly to an endpoint, the workload MUST include t
 Endpoint B performs a token exchange with the TTS in Trust Domain II to obtain a local Txn-Token in Trust Domain II, using the Txn-JAG as the subject_token.
 
 #### Txn-Token Request
-The parameters for the Txn-Token request follow the definitions in section 12.1 of {{?I-D.ietf-oauth-transaction-tokens}}. The following requirements apply:
+The parameters for the Txn-Token request follow the definitions in Section 12.1 of {{?I-D.ietf-oauth-transaction-tokens}}. The following requirements apply:
 
 **subject_token**<br>
 &nbsp;&nbsp;&nbsp;&nbsp;**REQUIRED.** MUST be the Txn-JAG issued by the AS in Trust Domain I, as obtained in Section 4.2.1 and presented to Endpoint B via the method in Section 4.2.1.3.
@@ -322,7 +322,255 @@ TODO Security
 This document has no IANA actions.
 
 
+
 --- back
+
+# Examples
+Two examples are provided in Appendix A, including the protocol framing and decoded JSON payloads.
+
+## Example Mode A: Indirect Txn-Token Exchange
+
+### Txn-JAG Request and Response
+Workload A in Trust Domain I performs token exchange with the AS in Trust Domain I (https://as.domain1.example/auth) to receive a Txn-JAG targeted at the AS in trust domain II (https://as.domain2.example/auth).
+
+```text
+POST /auth HTTP/1.1
+   Host: as.domain1.example
+   Content-Type: application/x-www-form-urlencoded
+
+   grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Atoken-exchange
+   &resource=https%3A%2F%2Fas.domain2.example%2Fauth
+   &subject_token=[Encoded Txn-Token-I]
+   &subject_token_type=urn%3Aietf%3Aparams%3Aoauth%3Atoken-type%3Atxn_token
+```
+*Figure 3: Txn-JAG Request*
+
+The subject_token in the prior request is the Txn-Token issued by the TTS in Trust Domain I, and the decoded JWT payload is shown here.
+
+```text
+{
+    "iat": 1777724800,
+    "exp": 1777724860,
+    "aud": "https://domain1.example",
+    "iss": "https://tts.domain1.example",
+    "txn": "97053963-771d-49cc-a4e3-20aad399c312",
+    "sub": "john_doe@a.org",
+    "req_wl": "apigateway.domain1.example",
+    "rctx": {
+        "req_ip": "69.151.72.123",
+        "authn": "urn:ietf:rfc:6749"
+    },
+    "scope": "trade.stocks",
+    "tctx": {
+        "action": "BUY",
+        "ticker": "MSFT",
+        "quantity": "100",
+        "customer_type": {
+            "geo": "US",
+            "level": "VIP"
+        }
+    }
+}
+```
+*Figure 4: Txn-Token-I Payload*
+
+The access_token parameter of the token exchange response contains the Txn-JAG requested by Workload A.
+
+```text
+HTTP/1.1 200 OK
+   Content-Type: application/json
+   Cache-Control: no-cache, no-store
+
+   {
+     "access_token":[Encoded Txn-JAG],
+     "token_type":"N_A",
+     "issued_token_type":"urn:ietf:params:oauth:token-type:jwt",
+     "expires_in":60
+   }
+```
+*Figure 5: Txn-JAG Response*
+
+```text
+{
+  "iat": 1777724830,
+  "exp": 1777728430,
+  "aud": "https://as.domain2.example/auth",
+  "iss": "https://as.domain1.example",
+  "sub": "john_doe@a.org",
+  "txn": "97053963-771d-49cc-a4e3-20aad399c312",
+  "req_wl": "apigateway.domain1.example,workload_a",
+  "rctx": {
+    "authn": "urn:ietf:rfc:6749"
+  },
+  "scope": "trade.stocks",
+  "tctx": {
+    "action": "BUY",
+    "ticker": "MSFT",
+    "quantity": "100"
+  }
+}
+```
+*Figure 6: Txn-JAG Payload*
+
+As shown in Figure 4 and Figure 6, the AS in Trust Domain I protects and evolves the claims during Txn-JAG issuance: for immutability, the txn claim is copied verbatim; for evolution, workload_a is appended to req_wl to record the exchange point; and for privacy, sensitive information like req_ip and customer_type are removed to ensure only essential information reaches Trust Domain II.
+
+### Access Token Request and Response
+Workload A presents the Txn-JAG as an assertion to the AS of Trust Domain II to request an access token.
+
+```text
+    POST /auth HTTP/1.1
+    Host: as.domain2.example
+    Content-Type: application/x-www-form-urlencoded
+
+    grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer
+    &assertion=[Encoded Txn-JAG]
+```
+*Figure 7: Access Token Request*
+
+```text
+   HTTP/1.1 200 OK
+   Content-Type: application/json
+   Cache-Control: no-cache, no-store
+
+   {
+     "access_token":"ey...",
+     "token_type":"N_A",
+     "issued_token_type":"urn:ietf:params:oauth:token-type:jwt",
+     "expires_in":60
+   }
+```
+*Figure 8: Access Token Response*
+
+```text
+{
+  "iat": 1777724890,
+  "exp": 1777728490,
+  "aud": "https://endpointb.domain2.example",
+  "iss": "https://as.domain2.example",
+  "sub": "john.doe.123",
+  "txn": "97053963-771d-49cc-a4e3-20aad399c312",
+  "req_wl": "apigateway.domain1.example,workload_a",
+  "rctx": {
+    "authn": "urn:ietf:rfc:6749"
+  },
+  "scope": "trade.stocks",
+  "tctx": {
+    "action": "BUY",
+    "ticker": "MSFT",
+    "quantity": "100"
+  }
+}
+```
+*Figure 9: Access Token Payload*
+
+### Txn-Token Request and Response
+Upon receiving the access token, Workload A in Trust Domain II exchanges it for a local Txn-Token from its TTS. The payload of the Txn-Token in Trust Domain II is shown below.
+
+```text
+{
+    "iat": 1777724900,
+    "exp": 1777724960,
+    "iss": "https://tts.domain2.example",
+    "aud": "https://domain2.example",
+    "txn": "97053963-771d-49cc-a4e3-20aad399c312",
+    "sub": "john_doe@a.org",
+    "req_wl": "apigateway.domain1.example,workload_a,endpoint_b",
+    "rctx": {
+      "authn": "urn:ietf:rfc:6749"
+    },
+    "scope": "trade.stocks",
+    "tctx": {
+        "action": "BUY",
+        "ticker": "MSFT",
+        "quantity": "100"
+  }
+}
+```
+*Figure 10: Txn-Token-II Payload*
+
+As can been seen from Fugure 10, the TTS preserves the txn claim verbatim and evolves the req_wl claim, appending the identifier of Endpoint B.
+
+## Example Mode B: Direct Txn-Token Exchange
+
+### Txn-JAG Request and Response
+
+Workload A in Trust Domain I exchanges its local Txn-Token for a Txn-JAG, where the resource is set to the TTS of Domain II.
+
+```text
+POST /auth HTTP/1.1
+Host: as.domain1.example
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=urn:ietf:params:oauth:grant-type:token-exchange
+&resource=https://tts.domain2.example/token
+&subject_token=[Encoded Txn-Token-I the same in Figure 4]
+&subject_token_type=urn:ietf:params:oauth:token-type:txn_token
+```
+*Figure 11: Txn-JAG Request*
+
+The AS in Domain I transcribes the claims. In the issued Txn-JAG, the aud is set to the Domain II TTS.
+
+```text
+{
+  "iat": 1777724830,
+  "exp": 1777728430,
+  "aud": "https://tts.domain2.example/token",
+  "iss": "https://as.domain1.example",
+  "sub": "john_doe@a.org",
+  "txn": "97053963-771d-49cc-a4e3-20aad399c312",
+  "req_wl": "ey...[Encrypted_Path],workload_a",
+  "scope": "trade.stocks",
+  "tctx": {
+    "action": "BUY",
+    "ticker": "MSFT",
+    "quantity": "100"
+  }
+}
+```
+*Figure 12: Txn-JAG Payload*
+
+As defined in Section 4.3, the AS in Trust Domain I applies an encryption strategy to the req_wl claim. The internal path preceding workload_a is encrypted to protect the internal topology of Domain I.
+
+### Txn-Token Request and Response
+
+Workload A presents the Txn-JAG directly to Endpoint B. Endpoint B then uses this Txn-JAG as the subject_token to request a local Txn-Token from the TTS in Trust Domain II.
+
+```text
+POST /token HTTP/1.1
+Host: tts.domain2.example
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=urn:ietf:params:oauth:grant-type:token-exchange
+&requested_token_type=urn%3Aietf%3Aparams%3Aoauth%3Atoken-type%3Atxn-token
+&subject_token=[Encoded Txn-JAG]
+&scope=trade.stocks
+&subject_token_type=urn:ietf:params:oauth:token-type:jwt-bearer
+```
+*Figure 13: Txn-Token Request*
+
+The TTS validates the cross-domain Txn-JAG based on the pre-established trust relationship with AS in Trust Domain I. It transcribes the claims and evolves the req_wl to include Endpoint B.
+
+```text
+{
+  "iat": 1777724900,
+  "exp": 1777724960,
+  "iss": "https://tts.domain2.example",
+  "aud": "https://domain2.example",
+  "txn": "97053963-771d-49cc-a4e3-20aad399c312",
+  "sub": "john_doe@a.org",
+  "req_wl": "ey...[Encrypted_Path],workload_a,endpoint_b",
+  "rctx": {
+    "authn": "urn:ietf:rfc:6749"
+  },
+ "scope": "trade.stocks",
+  "tctx": {
+    "action": "BUY",
+    "ticker": "MSFT",
+    "quantity": "100"
+  }
+}
+```
+*Figure 14: Txn-Token-II Payload*
 
 # Acknowledgments
 {:numbered="false"}
