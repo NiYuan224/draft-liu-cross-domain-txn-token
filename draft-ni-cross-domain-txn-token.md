@@ -181,7 +181,6 @@ Steps (1) and (2) are the same as those in Mode A.
 
 (5) The TTS of Trust Domain II mints a local Txn-Token, transcribing the workflow-related context from the Txn-JAG into the local Txn-Token's claims.
 
-
 # Requests and Responses
 The formats of requests and responses included in Section 3 are detailed in this section. To avoid redundancy, all illustrative examples are provided in Appendix A.
 
@@ -196,16 +195,60 @@ Workload A in Trust Domain I performs token exchange with the AS in Trust Domain
 The parameters for the Txn-JAG request build upon the definitions in Section 2.3.1 of {{?I-D.ietf-oauth-identity-chaining}} and {{RFC8693}}. While other parameters remain consistent with these specifications, the following specific requirements apply:
 
 **resource**<br>
-&nbsp;&nbsp;&nbsp;&nbsp;**REQUIRED** if audience is not set.  In Mode A (Indirect Txn-Token Exchange), it MUST be the URI of the AS in Trust Domain II.
+&nbsp;&nbsp;&nbsp;&nbsp;**REQUIRED** if audience is not set. It MUST be the URI of the AS in Trust Domain II.
 
 **audience**<br>
-&nbsp;&nbsp;&nbsp;&nbsp;**REQUIRED** if resource is not set.  In Mode A (Indirect Txn-Token Exchange), it MUST be the Well known/logical name of the AS in Trust Domain II.
+&nbsp;&nbsp;&nbsp;&nbsp;**REQUIRED** if resource is not set. It MUST be the well-known/logical name of the AS in Trust Domain II.
 
 **subject_token**<br>
 &nbsp;&nbsp;&nbsp;&nbsp;**REQUIRED.** MUST be a valid local Txn-Token issued within Trust Domain I.
 
 **subject_token_type**<br>
 &nbsp;&nbsp;&nbsp;&nbsp;**REQUIRED.** MUST be urn:ietf:params:oauth:token-type:txn_token.
+
+
+#### Txn-JAG Response
+The processing rules and response format defined in sections 2.3.2 and 2.3.3 of {{?I-D.ietf-oauth-identity-chaining}} apply, with the following modifications:
+
+* The AS in trust domain I SHOULD transcribe the workflow-related claims from the Txn-Token to the Txn-JAG's claims. During this transcription, The AS in trust domain I MAY add, remove or change the claims. See Claims Transcription (Section 4.4).
+
+### Cross-Domain Assertion
+
+Workload A in Trust Domain I uses the Txn-JAG obtained from the AS in Trust Domain I as an assertion to request an access token from the AS in Trust Domain II.
+
+#### Access Token Request
+
+The parameters described in section 2.4.1 of {{?I-D.ietf-oauth-identity-chaining}} apply here with the following restrictions:
+
+**assertion**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**REQUIRED.** The Txn-JAG returned by the AS in Trust Domain I.
+
+#### Access Token Response
+The processing rules and response formats defined in Sections 2.4.2 and 2.4.3 of {{?I-D.ietf-oauth-identity-chaining}} apply, with the following modifications:
+
+* The AS in trust domain II SHOULD transcribe the workflow-related claims from the Txn-JAG to the access token's claims. See Claims Transcription (Section 4.4).
+
+
+### Token Exchange for Txn-Token
+
+Workload A in Trust Domain I performs a token exchange with the TTS in Trust Domain II to obtain a local Txn-Token in Trust Domain II.
+
+#### Txn-Token Request
+
+The parameters for the Txn-Token request follow the definitions in section 12.1 of {{?I-D.ietf-oauth-transaction-tokens}}, the following requirements apply to the subject_token and subject_token_type:
+
+**subject_token**
+&nbsp;&nbsp;&nbsp;&nbsp;**REQUIRED.** MUST be the access token issued by the AS in Trust Domain II, as obtained in Section 4.2.
+
+**subject_token_type**
+&nbsp;&nbsp;&nbsp;&nbsp;**REQUIRED.** MUST be urn:ietf:params:oauth:token-type:access_token.
+
+#### Txn-Token Response
+The processing rules and response formats defined in Sections 12.3 and 12.4 of {{?I-D.ietf-oauth-transaction-tokens}} apply, with the following modifications:
+
+* For subject token validation, the TTS in Trust Domain II MUST validate the access token issued by its local AS.
+
+* The TTS in trust domain II SHOULD transcribe the workflow-related claims from the subject token to the claims of issued Txn Token.  See Claims Transcription (section 4.4).
 
 # Security Considerations
 
