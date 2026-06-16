@@ -181,6 +181,31 @@ Steps (1) and (2) are the same as those in Mode A.
 (5) The TTS of Trust Domain II mints a local Txn-Token, transcribing the workflow-related context from the Txn-JAG into the local Txn-Token's claims.
 
 
+# Requests and Responses
+The formats of requests and responses included in Section 3 are detailed in this section. To avoid redundancy, all illustrative examples are provided in Appendix A.
+
+## Mode A: Indirect Txn-Token Exchange
+
+This section defines the requests and responses for Mode A as described in Section 3.1.
+
+### Token Exchange for Txn-JAG
+Workload A in Trust Domain I performs token exchange with the AS in Trust Domain I to obtain a Txn-JAG that can be used at the AS in Trust Domain II.
+
+#### Txn-JAG Request
+The parameters for the Txn-JAG request build upon the definitions in Section 2.3.1 of {{?I-D.ietf-oauth-identity-chaining}} and {{RFC8693}}. While other parameters remain consistent with these specifications, the following specific requirements apply:
+
+**resource**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**REQUIRED** if audience is not set.  In Mode A (Indirect Txn-Token Exchange), it MUST be the URI of the AS in Trust Domain II.
+
+**audience**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**REQUIRED** if resource is not set.  In Mode A (Indirect Txn-Token Exchange), it MUST be the Well known/logical name of the AS in Trust Domain II.
+
+**subject_token**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**REQUIRED.** MUST be a valid local Txn-Token issued within Trust Domain I.
+
+**subject_token_type**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**REQUIRED.** MUST be urn:ietf:params:oauth:token-type:txn_token.
+
 # Security Considerations
 
 TODO Security
