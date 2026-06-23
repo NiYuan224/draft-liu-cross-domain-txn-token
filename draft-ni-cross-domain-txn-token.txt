@@ -5,7 +5,7 @@
 Network Working Group                                              Y. Ni
 Internet-Draft                                                 C. P. Liu
 Intended status: Informational                                    Huawei
-Expires: 18 December 2026                                   16 June 2026
+Expires: 25 December 2026                                   23 June 2026
 
 
                     Cross-domain Transaction Tokens
@@ -15,7 +15,7 @@ Abstract
 
    This document describes a mechanism for Cross-Domain Transaction
    Tokens, which enables the safe maintenance and propagation of user
-   identity, workload identities and authorization context across
+   identity, workload identities, and authorization context across
    multiple trust domains.
 
 About This Document
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 18 December 2026.
+   This Internet-Draft will expire on 25 December 2026.
 
 Copyright Notice
 
@@ -345,7 +345,7 @@ Table of Contents
 
    *  The AS in Trust Domain I SHOULD transcribe the workflow-related
       claims from the Txn-Token to the Txn-JAG's claims.  During this
-      transcription, The AS in Trust Domain I MAY add, remove or change
+      transcription, The AS in Trust Domain I MAY add, remove, or change
       the claims.  See Claims Transcription (Section 4.3).
 
 4.1.2.  Cross-Domain Assertion
@@ -401,8 +401,8 @@ Table of Contents
       validate the access token issued by its local AS.
 
    *  The TTS in trust domain II SHOULD transcribe the workflow-related
-      claims from the subject token to the claims of issued Txn Token.
-      See Claims Transcription (Section 4.3).
+      claims from the subject token to the claims of the issued Txn-
+      Token.  See Claims Transcription (Section 4.3).
 
 4.2.  Mode B: Direct Txn-Token Exchange
 
@@ -437,7 +437,7 @@ Table of Contents
 4.2.1.3.  Txn-JAG Transmission Methods
 
    When a Txn-JAG is presented directly to an endpoint, the workload
-   MUST include the Txn-JAG in an dedicated HTTP header named Txn-JAG.
+   MUST include the Txn-JAG in a dedicated HTTP header named Txn-JAG.
    This dedicated header avoids ambiguity with the Authorization header,
    which is conventionally associated with access tokens per [RFC6750].
 
@@ -567,9 +567,9 @@ Table of Contents
               Schwenkschuster, A., Kasselman, P., Burgin, K., Jenkins,
               M. J., Campbell, B., and A. Parecki, "OAuth Identity and
               Authorization Chaining Across Domains", Work in Progress,
-              Internet-Draft, draft-ietf-oauth-identity-chaining-14, 2
+              Internet-Draft, draft-ietf-oauth-identity-chaining-15, 19
               June 2026, <https://datatracker.ietf.org/doc/html/draft-
-              ietf-oauth-identity-chaining-14>.
+              ietf-oauth-identity-chaining-15>.
 
    [I-D.ietf-oauth-transaction-tokens]
               Tulshibagwale, A., Fletcher, G., and P. Kasselman,
@@ -689,7 +689,7 @@ A.1.3.  Txn-Token Request and Response
    "action": "BUY", "ticker": "MSFT", "quantity": "100" } } _Figure 10:
    Txn-Token-II Payload_
 
-   As can been seen from Fugure 10, the TTS preserves the txn claim
+   As can be seen from Figure 10, the TTS preserves the txn claim
    verbatim and evolves the req_wl claim, appending the identifier of
    Endpoint B.
 
