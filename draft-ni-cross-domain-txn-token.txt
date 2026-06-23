@@ -268,9 +268,9 @@ Table of Contents
    An opportunity for optimization arises from the flexibility defined
    in Section 5.1 of the Transaction
    Token[I-D.ietf-oauth-transaction-tokens], which allows the
-   subject_token to be "any other format understood by the TTS".  This
-   enables a TTS to directly accept a Txn-JAG issued by the upstream AS
-   as the subject token in a Txn-Token request.
+   subject_token to be "any other format that is understood by the TTS".
+   This enables a TTS to directly accept a Txn-JAG issued by the
+   upstream AS as the subject token in a Txn-Token request.
 
    Thus, Mode B reduces cross-domain round trips from three to one by
    allowing the TTS in Trust Domain II to accept the Txn-JAG directly as
