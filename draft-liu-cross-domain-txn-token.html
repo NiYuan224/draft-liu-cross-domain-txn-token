@@ -1348,13 +1348,13 @@ platforms, etc.). As illustrated in <span>[<a href="#I-D.kiliram-agent-trust-aut
 </pre><a href="#section-3.1-2" class="pilcrow">¶</a>
 </div>
 <p id="section-3.1-3"><em>Figure 1: Indirect Txn-Token Exchange</em><a href="#section-3.1-3" class="pilcrow">¶</a></p>
-<p id="section-3.1-4">(1) Workload A in Trust Domain I sends a token exchange request to the local AS to exchange the local Txn-Token for a cross-domain Txn-JAG. See Section 4.1.1 for the request format.<a href="#section-3.1-4" class="pilcrow">¶</a></p>
-<p id="section-3.1-5">(2) The AS in Trust Domain I validates the request, generates and responds with the Txn-JAG, transcribing the workflow-related claims from the local Txn-Token into the Txn-JAG's claims. See Section 4.1.2 for the response format.<a href="#section-3.1-5" class="pilcrow">¶</a></p>
-<p id="section-3.1-6">(3) Workload A in Trust Domain I presents the Txn-JAG to the AS of Trust Domain II to request an access token. See Section 4.2.1 for the request format.<a href="#section-3.1-6" class="pilcrow">¶</a></p>
-<p id="section-3.1-7">(4) The AS of Trust Domain II validates the Txn-JAG and responds with an access token, transcribing the workflow-related claims from the Txn-JAG into the access token. See Section 4.2.2 for the response format.<a href="#section-3.1-7" class="pilcrow">¶</a></p>
+<p id="section-3.1-4">(1) Workload A in Trust Domain I sends a token exchange request to the local AS to exchange the local Txn-Token for a cross-domain Txn-JAG. See <a href="#exchangeforJAG" class="auto internal xref">Section 4.1.1</a> for the request format.<a href="#section-3.1-4" class="pilcrow">¶</a></p>
+<p id="section-3.1-5">(2) The AS in Trust Domain I validates the request, generates and responds with the Txn-JAG, transcribing the workflow-related claims from the local Txn-Token into the Txn-JAG's claims. See <a href="#exchangeforJAG" class="auto internal xref">Section 4.1.1</a> for the response format.<a href="#section-3.1-5" class="pilcrow">¶</a></p>
+<p id="section-3.1-6">(3) Workload A in Trust Domain I presents the Txn-JAG to the AS of Trust Domain II to request an access token. See <a href="#exchangeforAT" class="auto internal xref">Section 4.1.2</a> for the request format.<a href="#section-3.1-6" class="pilcrow">¶</a></p>
+<p id="section-3.1-7">(4) The AS of Trust Domain II validates the Txn-JAG and responds with an access token, transcribing the workflow-related claims from the Txn-JAG into the access token. See <a href="#exchangeforAT" class="auto internal xref">Section 4.1.2</a> for the response format.<a href="#section-3.1-7" class="pilcrow">¶</a></p>
 <p id="section-3.1-8">(5) Workload A in Trust Domain I invokes Endpoint B of Trust Domain II with the received access token.<a href="#section-3.1-8" class="pilcrow">¶</a></p>
-<p id="section-3.1-9">(6) Endpoint B presents the inbound access token to the TTS of Trust Domain II to request a Txn-Token. See Section 4.3.1 for the request format.<a href="#section-3.1-9" class="pilcrow">¶</a></p>
-<p id="section-3.1-10">(7) The TTS of Trust Domain II mints a local Txn-Token, transcribing the workflow-related claims from the access token into the new Txn-Token. See Section 4.3.2 for the response format.<a href="#section-3.1-10" class="pilcrow">¶</a></p>
+<p id="section-3.1-9">(6) Endpoint B presents the inbound access token to the TTS of Trust Domain II to request a Txn-Token. See <a href="#exchangeforTxn" class="auto internal xref">Section 4.1.3</a> for the request format.<a href="#section-3.1-9" class="pilcrow">¶</a></p>
+<p id="section-3.1-10">(7) The TTS of Trust Domain II mints a local Txn-Token, transcribing the workflow-related claims from the access token into the new Txn-Token. See <a href="#exchangeforTxn" class="auto internal xref">Section 4.1.3</a> for the response format.<a href="#section-3.1-10" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="mode-b-direct-txn-token-exchange">
@@ -1413,7 +1413,7 @@ platforms, etc.). As illustrated in <span>[<a href="#I-D.kiliram-agent-trust-aut
 <a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-mode-a-indirect-txn-token-ex" class="section-name selfRef">Mode A: Indirect Txn-Token Exchange</a>
         </h3>
 <p id="section-4.1-1">This section defines the requests and responses for Mode A as described in Section 3.1.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
-<div id="token-exchange-for-txn-jag">
+<div id="exchangeforJAG">
 <section id="section-4.1.1">
           <h4 id="name-token-exchange-for-txn-jag">
 <a href="#section-4.1.1" class="section-number selfRef">4.1.1. </a><a href="#name-token-exchange-for-txn-jag" class="section-name selfRef">Token Exchange for Txn-JAG</a>
@@ -1450,7 +1450,7 @@ platforms, etc.). As illustrated in <span>[<a href="#I-D.kiliram-agent-trust-aut
 </div>
 </section>
 </div>
-<div id="cross-domain-assertion">
+<div id="exchangeforAT">
 <section id="section-4.1.2">
           <h4 id="name-cross-domain-assertion">
 <a href="#section-4.1.2" class="section-number selfRef">4.1.2. </a><a href="#name-cross-domain-assertion" class="section-name selfRef">Cross-Domain Assertion</a>
@@ -1481,7 +1481,7 @@ platforms, etc.). As illustrated in <span>[<a href="#I-D.kiliram-agent-trust-aut
 </div>
 </section>
 </div>
-<div id="token-exchange-for-txn-token">
+<div id="exchangeforTxn">
 <section id="section-4.1.3">
           <h4 id="name-token-exchange-for-txn-toke">
 <a href="#section-4.1.3" class="section-number selfRef">4.1.3. </a><a href="#name-token-exchange-for-txn-toke" class="section-name selfRef">Token Exchange for Txn-Token</a>
@@ -1526,7 +1526,7 @@ platforms, etc.). As illustrated in <span>[<a href="#I-D.kiliram-agent-trust-aut
 <a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-mode-b-direct-txn-token-exch" class="section-name selfRef">Mode B: Direct Txn-Token Exchange</a>
         </h3>
 <p id="section-4.2-1">This section defines the requests and responses for Mode B as described in Section 3.2.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
-<div id="token-exchange-for-txn-jag-1">
+<div id="token-exchange-for-txn-jag">
 <section id="section-4.2.1">
           <h4 id="name-token-exchange-for-txn-jag-2">
 <a href="#section-4.2.1" class="section-number selfRef">4.2.1. </a><a href="#name-token-exchange-for-txn-jag-2" class="section-name selfRef">Token Exchange for Txn-JAG</a>
@@ -1563,7 +1563,7 @@ platforms, etc.). As illustrated in <span>[<a href="#I-D.kiliram-agent-trust-aut
 </div>
 </section>
 </div>
-<div id="token-exchange-for-txn-token-1">
+<div id="token-exchange-for-txn-token">
 <section id="section-4.2.2">
           <h4 id="name-token-exchange-for-txn-token">
 <a href="#section-4.2.2" class="section-number selfRef">4.2.2. </a><a href="#name-token-exchange-for-txn-token" class="section-name selfRef">Token Exchange for Txn-Token</a>
