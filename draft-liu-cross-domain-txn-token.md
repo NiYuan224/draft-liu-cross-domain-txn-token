@@ -319,6 +319,13 @@ Claims transcription across trust domains SHOULD ensure that the workflow-relate
 * Data Minimization. The processing or `req_wl` may exist privacy concerns that exposing topology of Domain I. The AS in Trust Domain I MAY apply security and privacy strategies to workflow-related claims when issuing the Txn-JAG. Such measures include but not limited to Removal.
 
     * Removal. Claims related to completed tasks or not required by downstream trust domains COULD be removed or redacted. If certain claims are required for end-to-end auditing, Domain I MAY take proper logs before removal.
+ 
+# Use Cases
+
+## In-Vehicle Intelligence and Third-Party Service Ecosystems
+An in-vehicle agent often orchestrates high-level tasks on behalf of the vehicle owner that require invocation of external, third-party service providers. For instance, when a user requests an automated reservation for a charging pile at a destination, the in-vehicle agent generates an initial Txn-Token containing the workflow-related claims, such as the arrival time, destination, charging time, and user preference, etc. With the cross-domain Txn-Token mechanism defined in this document，the above workflow-related claims can be securely propagated along a sequential chain: originating from the in-vehicle agent, passing through the navigation agent and the charging service provider, and finally terminating at the payment platform.
+
+
 
 # Operational Considerations {#ops}
 
