@@ -323,7 +323,7 @@ Claims transcription across trust domains SHOULD ensure that the workflow-relate
 # Use Cases
 
 ## In-Vehicle Intelligence and Third-Party Service Ecosystems
-An in-vehicle agent often orchestrates high-level tasks on behalf of the vehicle owner that require invocation of external, third-party service providers. For instance, when a user requests an automated reservation for a charging pile at a destination, the in-vehicle agent generates an initial Txn-Token containing the workflow-related claims,
+An in-vehicle agent often orchestrates tasks on behalf of the vehicle owner that require invocation of external, third-party service providers. For instance, when a user requests an automated reservation for a charging pile at a destination, the in-vehicle agent generates an initial Txn-Token containing the workflow-related claims,
 such as the arrival time, destination, charging time, and user preference, etc. With the cross-domain Txn-Token mechanism defined in this document，the above workflow-related claims can be securely propagated along a sequential chain: originating from the in-vehicle agent, passing through the navigation agent and the charging service provider, and finally terminating at the payment platform.
 
 ## On-Premises Service and Subscription SaaS Collaboration
