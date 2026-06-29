@@ -455,7 +455,7 @@ Workload A presents the Txn-JAG as an assertion to the AS of Trust Domain II to 
 ```
 *Figure 8: Access Token Response*
 
-```text
+```
 {
   "iat": 1777724890,
   "exp": 1777728490,
