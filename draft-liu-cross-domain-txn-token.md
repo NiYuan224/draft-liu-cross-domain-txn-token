@@ -319,7 +319,7 @@ Claims transcription across trust domains SHOULD ensure that the workflow-relate
 * Data Minimization. The processing or `req_wl` may exist privacy concerns that exposing topology of Domain I. The AS in Trust Domain I MAY apply security and privacy strategies to workflow-related claims when issuing the Txn-JAG. Such measures include but not limited to Removal.
 
     * Removal. Claims related to completed tasks or not required by downstream trust domains COULD be removed or redacted. If certain claims are required for end-to-end auditing, Domain I MAY take proper logs before removal.
- 
+
 # Use Cases
 
 ## In-Vehicle Intelligence and Third-Party Service Ecosystems
