@@ -208,13 +208,13 @@ The parameters for the Txn-JAG request build upon the definitions in Section 2.3
 **REQUIRED** if audience is not set. It MUST be the URI of the AS in Trust Domain II.
 
 **audience**<br>
-&nbsp;&nbsp;&nbsp;&nbsp;**REQUIRED** if resource is not set. It MUST be the well-known/logical name of the AS in Trust Domain II.
+**REQUIRED** if resource is not set. It MUST be the well-known/logical name of the AS in Trust Domain II.
 
 **subject_token**<br>
-&nbsp;&nbsp;&nbsp;&nbsp;**REQUIRED.** MUST be a valid local Txn-Token issued within Trust Domain I.
+**REQUIRED.** MUST be a valid local Txn-Token issued within Trust Domain I.
 
 **subject_token_type**<br>
-&nbsp;&nbsp;&nbsp;&nbsp;**REQUIRED.** MUST be urn:ietf:params:oauth:token-type:txn_token.
+**REQUIRED.** MUST be urn:ietf:params:oauth:token-type:txn_token.
 
 
 #### Txn-JAG Response
@@ -231,7 +231,7 @@ Workload A in Trust Domain I uses the Txn-JAG obtained from the AS in Trust Doma
 The parameters described in Section 2.4.1 of {{?I-D.ietf-oauth-identity-chaining}} apply here with the following requirements:
 
 **assertion**<br>
-&nbsp;&nbsp;&nbsp;&nbsp;**REQUIRED.** The Txn-JAG returned by the AS in Trust Domain I.
+**REQUIRED.** The Txn-JAG returned by the AS in Trust Domain I.
 
 #### Access Token Response
 The processing rules and response formats defined in Sections 2.4.2 and 2.4.3 of {{?I-D.ietf-oauth-identity-chaining}} apply, with the following modifications:
@@ -248,10 +248,10 @@ Workload A in Trust Domain I performs a token exchange with the TTS in Trust Dom
 The parameters for the Txn-Token request follow the definitions in Section 12.1 of {{?I-D.ietf-oauth-transaction-tokens}}, the following requirements apply to the subject_token and subject_token_type:
 
 **subject_token**<br>
-&nbsp;&nbsp;&nbsp;&nbsp;**REQUIRED.** MUST be the access token issued by the AS in Trust Domain II, as obtained {{exchangeforTxn}}.
+**REQUIRED.** MUST be the access token issued by the AS in Trust Domain II, as obtained {{exchangeforTxn}}.
 
 **subject_token_type**<br>
-&nbsp;&nbsp;&nbsp;&nbsp;**REQUIRED.** MUST be urn:ietf:params:oauth:token-type:access_token.
+**REQUIRED.** MUST be urn:ietf:params:oauth:token-type:access_token.
 
 #### Txn-Token Response
 The processing rules and response formats defined in Sections 12.3 and 12.4 of {{?I-D.ietf-oauth-transaction-tokens}} apply, with the following modifications:
@@ -273,10 +273,10 @@ Workload A in Trust Domain I performs token exchange with the AS in Trust Domain
 The request follows the same format as defined in {{exchangeforJAG}}, except for the resource or audience claim:
 
 **resource**<br>
-&nbsp;&nbsp;&nbsp;&nbsp;**REQUIRED.** if audience is not set. It MUST be the URI of the TTS in Trust Domain II.
+**REQUIRED.** if audience is not set. It MUST be the URI of the TTS in Trust Domain II.
 
 **audience**<br>
-&nbsp;&nbsp;&nbsp;&nbsp;**REQUIRED.** if resource is not set. It MUST be the well-known/logical name of the TTS in Trust Domain II.
+**REQUIRED.** if resource is not set. It MUST be the well-known/logical name of the TTS in Trust Domain II.
 
 
 #### Txn-JAG Response
@@ -295,10 +295,10 @@ Endpoint B performs a token exchange with the TTS in Trust Domain II to obtain a
 The parameters for the Txn-Token request follow the definitions in Section 12.1 of {{?I-D.ietf-oauth-transaction-tokens}}. The following requirements apply:
 
 **subject_token**<br>
-&nbsp;&nbsp;&nbsp;&nbsp;**REQUIRED.** MUST be the Txn-JAG issued by the AS in Trust Domain I, as obtained in Section 4.2.1 and presented to Endpoint B via the method in Section 4.2.1.3.
+**REQUIRED.** MUST be the Txn-JAG issued by the AS in Trust Domain I, as obtained in Section 4.2.1 and presented to Endpoint B via the method in Section 4.2.1.3.
 
 **subject_token_type**<br>
-&nbsp;&nbsp;&nbsp;&nbsp;**REQUIRED.**  MUST be urn:ietf:params:oauth:token-type:jwt-bearer.
+**REQUIRED.**  MUST be urn:ietf:params:oauth:token-type:jwt-bearer.
 
 #### Txn-Token Response
 The processing rules and response format are identical to those described in {{exchangeforTxn}}, with the following modification for subject token validation:
