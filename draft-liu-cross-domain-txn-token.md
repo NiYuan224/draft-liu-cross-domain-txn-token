@@ -205,7 +205,8 @@ Workload A in Trust Domain I performs token exchange with the AS in Trust Domain
 The parameters for the Txn-JAG request build upon the definitions in Section 2.3.1 of {{?I-D.ietf-oauth-identity-chaining}} and {{RFC8693}}. While claim types remain consistent with these specifications, the values of certain claims are required as follows:
 
 **resource**<br>
-&nbsp;&nbsp;&nbsp;&nbsp;**REQUIRED** if audience is not set. It MUST be the URI of the AS in Trust Domain II.
+
+**REQUIRED** if audience is not set. It MUST be the URI of the AS in Trust Domain II.
 
 **audience**<br>
 &nbsp;&nbsp;&nbsp;&nbsp;**REQUIRED** if resource is not set. It MUST be the well-known/logical name of the AS in Trust Domain II.
