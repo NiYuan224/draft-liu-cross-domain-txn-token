@@ -320,15 +320,6 @@ Claims transcription across trust domains SHOULD ensure that the workflow-relate
 
     * Removal. Claims related to completed tasks or not required by downstream trust domains COULD be removed or redacted. If certain claims are required for end-to-end auditing, Domain I MAY take proper logs before removal.
 
-# Use Cases
-
-## In-Vehicle Intelligence and Third-Party Service Ecosystems
-An in-vehicle agent often orchestrates tasks on behalf of the vehicle owner that require invocation of external, third-party service providers. For instance, when a user requests an automated reservation for a charging pile at a destination, the in-vehicle agent generates an initial Txn-Token containing the workflow-related claims,
-such as the arrival time, destination, charging time, and user preference, etc. With the cross-domain Txn-Token mechanism defined in this document，the above workflow-related claims can be securely propagated along a sequential chain: originating from the in-vehicle agent, passing through the navigation agent and the charging service provider, and finally terminating at the payment platform.
-
-## On-Premises Service and Subscription SaaS Collaboration
-An on-premises enterprise service initiates a core workflow by performing local data preprocessing and generating an initial Txn-Token. With the cross-domain Txn-Token mechanism defined in this document, this token can be securely propagated from the enterprise domain to a subscription-based cloud SaaS platform. The mechanism ensures cryptographically verifiable, end‑to‑end accountability and auditability.
-
 # Operational Considerations {#ops}
 
 * AS and TTS may be operated by the same service, or not. In the former case, some procedures listed in {{workflow}} and {{reqs}} could be merged.
