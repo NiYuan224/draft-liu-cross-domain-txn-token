@@ -1739,7 +1739,7 @@ platforms, etc.). As illustrated in <span>[<a href="#I-D.kiliram-agent-trust-aut
 
    grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Atoken-exchange
    &amp;resource=https%3A%2F%2Fas.domain2.example%2Fauth
-   &amp;subject_token=[Encoded Txn-Token-I]
+   &amp;subject_token=&lt;Encoded Txn-Token-I&gt;
    &amp;subject_token_type=urn%3Aietf%3Aparams%3Aoauth%3Atoken-type%3Atxn_token
 </pre><a href="#appendix-A.1.1-2" class="pilcrow">¶</a>
 </div>
@@ -1781,7 +1781,7 @@ HTTP/1.1 200 OK
    Cache-Control: no-cache, no-store
 
    {
-     "access_token":[Encoded Txn-JAG],
+     "access_token":&lt;Encoded Txn-JAG&gt;,
      "token_type":"N_A",
      "issued_token_type":"urn:ietf:params:oauth:token-type:jwt",
      "expires_in":60
@@ -1801,14 +1801,14 @@ HTTP/1.1 200 OK
   "req_wl": "apigateway.domain1.example,workload_a",
   "rctx": {
     "authn": "urn:ietf:rfc:6749"
-    [Encrypted_Information]
+    &lt;Encrypted_Information&gt;
   },
   "scope": "trade.stocks",
   "tctx": {
     "action": "BUY",
     "ticker": "MSFT",
     "quantity": "100"
-    [Encrypted_Information]
+    &lt;Encrypted_Information&gt;
   }
 }
 </pre><a href="#appendix-A.1.1-10" class="pilcrow">¶</a>
@@ -1830,7 +1830,7 @@ HTTP/1.1 200 OK
     Content-Type: application/x-www-form-urlencoded
 
     grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer
-    &amp;assertion=[Encoded Txn-JAG]
+    &amp;assertion=&lt;Encoded Txn-JAG&gt;
 </pre><a href="#appendix-A.1.2-2" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A.1.2-3"><em>Figure 7: Access Token Request</em><a href="#appendix-A.1.2-3" class="pilcrow">¶</a></p>
@@ -1861,14 +1861,14 @@ HTTP/1.1 200 OK
   "req_wl": "apigateway.domain1.example,workload_a",
   "rctx": {
     "authn": "urn:ietf:rfc:6749"
-    [Encrypted_Information]
+    &lt;Encrypted_Information&gt;
   },
   "scope": "trade.stocks",
   "tctx": {
     "action": "BUY",
     "ticker": "MSFT",
     "quantity": "100"
-    [Encrypted_Information]
+    &lt;Encrypted_Information&gt;
   }
 }
 </pre><a href="#appendix-A.1.2-6" class="pilcrow">¶</a>
@@ -1934,7 +1934,7 @@ Content-Type: application/x-www-form-urlencoded
 
 grant_type=urn:ietf:params:oauth:grant-type:token-exchange
 &amp;resource=https://tts.domain2.example
-&amp;subject_token=[Encoded Txn-Token-I the same in Figure 4]
+&amp;subject_token=&lt;Encoded Txn-Token-I the same in Figure 4&gt;
 &amp;subject_token_type=urn:ietf:params:oauth:token-type:txn_token
 </pre><a href="#appendix-A.2.1-2" class="pilcrow">¶</a>
 </div>
@@ -1985,7 +1985,7 @@ Content-Type: application/x-www-form-urlencoded
 
 grant_type=urn:ietf:params:oauth:grant-type:token-exchange
 &amp;requested_token_type=urn%3Aietf%3Aparams%3Aoauth%3Atoken-type%3Atxn-token
-&amp;subject_token=[Encoded Txn-JAG]
+&amp;subject_token=&lt;Encoded Txn-JAG&gt;
 &amp;scope=trade.stocks
 &amp;subject_token_type=urn:ietf:params:oauth:token-type:jwt-bearer
 </pre><a href="#appendix-A.2.2-2" class="pilcrow">¶</a>
